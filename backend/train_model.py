@@ -23,12 +23,12 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import pickle
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+# from sklearn.preprocessing import MinMaxScaler
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import mean_absolute_error, mean_squared_error
+# from tensorflow.keras.models import Sequential
+# from tensorflow.keras.layers import LSTM, Dense, Dropout
+# from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 # ── Config ────────────────────────────────────────────────────────────────────
 

@@ -11,7 +11,7 @@ and use real historical values here.
 """
 
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import MinMaxScaler
 
 SEQ_LEN    = 24      # must match training config
 N_FEATURES = 6       # hour, day_of_week, month, temperature, lag_1, lag_24
