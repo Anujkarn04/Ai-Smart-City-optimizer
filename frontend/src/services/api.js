@@ -9,36 +9,40 @@
  * Production: your Render / Railway URL
  */
 
-import axios from 'axios'
+import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://ai-smart-city-optimizer.onrender.com/";
 
 const client = axios.create({
   baseURL: BASE_URL,
   timeout: 15000,
-  headers: { 'Content-Type': 'application/json' },
-})
+  headers: { "Content-Type": "application/json" },
+});
 
 // ── Request interceptor — attach timing mark ─────────────────────────────────
 client.interceptors.request.use((config) => {
-  config.metadata = { startTime: Date.now() }
-  return config
-})
+  config.metadata = { startTime: Date.now() };
+  return config;
+});
 
 // ── Response interceptor — log latency in dev ────────────────────────────────
 client.interceptors.response.use(
   (response) => {
     if (import.meta.env.DEV) {
-      const ms = Date.now() - response.config.metadata.startTime
-      console.debug(`[API] ${response.config.method?.toUpperCase()} ${response.config.url} → ${response.status} (${ms}ms)`)
+      const ms = Date.now() - response.config.metadata.startTime;
+      console.debug(
+        `[API] ${response.config.method?.toUpperCase()} ${response.config.url} → ${response.status} (${ms}ms)`,
+      );
     }
-    return response
+    return response;
   },
   (error) => {
-    console.error('[API Error]', error.response?.data || error.message)
-    return Promise.reject(error)
-  }
-)
+    console.error("[API Error]", error.response?.data || error.message);
+    return Promise.reject(error);
+  },
+);
 
 // ── API methods ───────────────────────────────────────────────────────────────
 
@@ -46,13 +50,13 @@ client.interceptors.response.use(
  * GET /health
  * Returns { status: "ok", model_loaded: true }
  */
-export const fetchHealth = () => client.get('/health').then((r) => r.data)
+export const fetchHealth = () => client.get("/health").then((r) => r.data);
 
 /**
  * GET /metrics
  * Returns { mae, rmse, unit, note }
  */
-export const fetchMetrics = () => client.get('/metrics').then((r) => r.data)
+export const fetchMetrics = () => client.get("/metrics").then((r) => r.data);
 
 /**
  * POST /predict
@@ -60,6 +64,6 @@ export const fetchMetrics = () => client.get('/metrics').then((r) => r.data)
  * Returns { predicted_energy_mwh, unit, model, status }
  */
 export const postPredict = (features) =>
-  client.post('/predict', features).then((r) => r.data)
+  client.post("/predict", features).then((r) => r.data);
 
-export default client
+export default client;
