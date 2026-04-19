@@ -5,7 +5,7 @@ A real-time **Smart City Dashboard** that predicts energy demand, monitors zones
 ---
 
 ## 🚀 Live Demo
-🌐 https://ai-smart-city-optimizer.vercel.app/zones
+🌐 https://ai-smart-city-optimizer.vercel.app/
 
 ---
 
